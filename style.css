@@ -6,6 +6,9 @@ body {
 	width: 600px;
 
 }
+.invisible{
+	display: none;
+}
 
 /*---------------------------------------------------------------
 Typographie et style des entêtes

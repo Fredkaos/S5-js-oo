@@ -5,9 +5,18 @@ class fruits {
         this.qte = qte;
         this.sousTotal = sousTotal;
     }
-
     toString() {
-        return this.item + " " + this.prix + "$\n" + this.qte + " " + this.sousTotal + "$";
+        return this.item + " " + this.prix;
+    }
+}
+class Panier {
+    constructor(peches, poires, pommes) {
+        this.peches = peches;
+        this.poires = poires;
+        this.pommes = pommes;
+    }
+    toString() {
+        return this.peches + "\n" + this.poires + "\n" + this.pommes;
     }
 }
 function Creerfruit() {
@@ -40,4 +49,25 @@ function ajout(choix) {
     poires.sousTotal = parseInt(document.getElementById("totalpoires").innerText);
     pommes.sousTotal = parseInt(document.getElementById("totalpommes").innerText);
     document.getElementById("total").innerText = (peches.sousTotal + poires.sousTotal + pommes.sousTotal).toFixed(2) + "$";
+
+    let total1 = parseInt(document.getElementById("total").innerText);
+    if (total1 < 20)
+    {
+        document.getElementById("erreur_mdp").setAttribute("class", "center error");
+    }
+    else
+    {
+        document.getElementById("erreur_mdp").setAttribute("class", "center invisible error");
+    }
+}
+function envoyer() {
+    let monPanier = new Panier(peches, poires, pommes)
+    sessionStorage.setItem("Panier", monPanier)
+    return true;
+}
+function afficher() {
+    let panier = sessionStorage.getItem("Panier");
+    paragraphe = document.createElement('p');
+    paragraphe.innerText = JSON.parse(JSON.stringify(Panier));
+    document.getElementById("resultat").append(paragraphe);
 }
